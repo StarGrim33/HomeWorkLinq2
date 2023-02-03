@@ -1,4 +1,4 @@
-﻿namespace HomeWorkLinq2
+namespace Linq1
 {
     internal class Program
     {
@@ -7,6 +7,7 @@
             Arstocka arstocka = new();
             arstocka.ShowPrisoners();
             arstocka.Amnesty();
+            arstocka.ShowPrisoners();
         }
     }
 
@@ -18,17 +19,17 @@
         {
             _prisoners = new List<Prisoner>()
             {
-                new Prisoner("Лаврентий Павлович Берия", "Убийство"),
-                new Prisoner("Исаак Израилевич Бродский", "Антиправительственное"),
-                new Prisoner("Айзек Азимов", "Антиправительственное"),
-                new Prisoner("Георгий Константинович", "Антиправительственное"),
-                new Prisoner("Феликс Эдмундович Дзержинский", "Госизмена"),
+                new Prisoner("Лаврентий", "Убийство"),
+                new Prisoner("Исаак", "Антиправительственное"),
+                new Prisoner("Айзек", "Антиправительственное"),
+                new Prisoner("Георгий", "Мошенничество"),
+                new Prisoner("Феликс", "Терроризм"),
             };
         }
 
         public void ShowPrisoners()
         {
-            foreach (Prisoner prisoner in _prisoners)
+            foreach(Prisoner prisoner in _prisoners)
             {
                 Console.WriteLine($"{prisoner.Name}, статья: {prisoner.Article}");
             }
@@ -36,14 +37,16 @@
 
         public void Amnesty()
         {
-            var amnestied = _prisoners.Where(prisoner => prisoner.Article == "Антиправительственное");
+            var amnestied = _prisoners.Where(prisoner => prisoner.Article == "Антиправительственное").ToList();
+            _prisoners.RemoveAll(x => amnestied.Remove(x));
+
             int index = 1;
 
             Console.WriteLine($"{new string('*', 25)}");
 
-            foreach (Prisoner prisoner in amnestied)
+            foreach (var amnesty in amnestied)
             {
-                Console.WriteLine($"{index}.{prisoner.Name}");
+                Console.WriteLine($"{index}.{amnesty.Name}");
                 index++;
             }
         }
@@ -51,7 +54,7 @@
 
     class Prisoner
     {
-        public Prisoner(string name, string article)
+        public  Prisoner(string name, string article)
         {
             Name = name;
             Article = article;
