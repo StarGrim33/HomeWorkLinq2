@@ -37,10 +37,11 @@ namespace Linq1
 
         public void Amnesty()
         {
-            var amnestied = _prisoners.Where(prisoner => prisoner.Article == "Антиправительственное").ToList();
-            _prisoners.RemoveAll(x => amnestied.Remove(x));
-
             int index = 1;
+            string article = "Антиправительственное";
+
+            var amnestied = _prisoners.Where(prisoner => prisoner.Article == article).ToList();
+            _prisoners.RemoveAll(x => amnestied.Remove(x));
 
             Console.WriteLine($"{new string('*', 25)}");
 
