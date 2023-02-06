@@ -29,6 +29,8 @@
 
         public void ShowPrisoners()
         {
+            Console.WriteLine($"{new string('*', 25)}");
+
             foreach (Prisoner prisoner in _prisoners)
             {
                 Console.WriteLine($"{prisoner.Name}, статья: {prisoner.Article}");
@@ -37,18 +39,9 @@
 
         public void Amnesty()
         {
-            int index = 1;
             string article = "Антиправительственное";
-
-            var amnestied = _prisoners.Where(prisoner => prisoner.Article == article).ToList();
-
-            Console.WriteLine($"{new string('*', 25)}");
-
-            foreach (var amnesty in amnestied)
-            {
-                Console.WriteLine($"{index}.{amnesty.Name}");
-                index++;
-            }
+            var amnestied = _prisoners.Where(prisoner => prisoner.Article != article).ToList();
+            _prisoners = amnestied.ToList();
         }
     }
 
