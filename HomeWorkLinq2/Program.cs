@@ -1,4 +1,4 @@
-﻿namespace HomeWorkLinq2
+﻿namespace Linq1
 {
     internal class Program
     {
@@ -18,11 +18,11 @@
         {
             _prisoners = new List<Prisoner>()
             {
-                new Prisoner("Лаврентий Павлович Берия", "Убийство"),
-                new Prisoner("Исаак Израилевич Бродский", "Антиправительственное"),
-                new Prisoner("Айзек Азимов", "Антиправительственное"),
-                new Prisoner("Георгий Константинович", "Антиправительственное"),
-                new Prisoner("Феликс Эдмундович Дзержинский", "Госизмена"),
+                new Prisoner("Лаврентий", "Убийство"),
+                new Prisoner("Исаак", "Антиправительственное"),
+                new Prisoner("Айзек", "Антиправительственное"),
+                new Prisoner("Георгий", "Мошенничество"),
+                new Prisoner("Феликс", "Терроризм"),
             };
         }
 
@@ -36,14 +36,16 @@
 
         public void Amnesty()
         {
-            var amnestied = _prisoners.Where(prisoner => prisoner.Article == "Антиправительственное");
             int index = 1;
+            string article = "Антиправительственное";
+
+            var amnestied = _prisoners.Where(prisoner => prisoner.Article == article).ToList();
 
             Console.WriteLine($"{new string('*', 25)}");
 
-            foreach (Prisoner prisoner in amnestied)
+            foreach (var amnesty in amnestied)
             {
-                Console.WriteLine($"{index}.{prisoner.Name}");
+                Console.WriteLine($"{index}.{amnesty.Name}");
                 index++;
             }
         }
