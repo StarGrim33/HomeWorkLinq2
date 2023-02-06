@@ -7,6 +7,7 @@
             Arstocka arstocka = new();
             arstocka.ShowPrisoners();
             arstocka.Amnesty();
+            arstocka.ShowPrisoners();
         }
     }
 
